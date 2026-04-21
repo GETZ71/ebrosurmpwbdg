@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Brosur Madinah Pratama Wisata - Premium Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --gold-primary: #bf953f;
+            --gold-light: #fcf6ba;
+            --gold-dark: #aa771c;
+        }
+
+        body {
+            background-color: #050505;
+            font-family: 'Inter', sans-serif;
+            color: #f4f4f5;
+            scroll-behavior: smooth;
+        }
+
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light), var(--gold-dark), var(--gold-light), var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-bg {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light), var(--gold-dark));
+        }
+
+        .luxury-card {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(191, 149, 63, 0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .luxury-card:hover {
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 10px 30px -10px rgba(191, 149, 63, 0.4);
+            transform: translateY(-8px);
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(191, 149, 63, 0.3);
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .photo-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            aspect-ratio: 4/3;
+            border: 1px solid rgba(191, 149, 63, 0.3);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-frame:hover img {
+            transform: scale(1.1);
+        }
+
+        .simulasi-tab.active {
+            background: var(--gold-primary);
+            color: black;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 10px; }
+    </style>
+</head>
+<body class="py-6 md:py-10 px-2 md:px-4">
+
+    <div class="max-w-4xl mx-auto bg-black rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,1)] border border-zinc-800">
+        
+        <!-- Hero Header -->
+        <div class="relative h-[350px] md:h-[480px] flex items-center justify-center text-center px-4 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="umroh1.jpg" alt="Background Umroh" class="w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-black"></div>
+            </div>
+
+            <div class="relative z-10">
+                <div class="mb-5 md:mb-8 flex justify-center">
+                    <div class="p-3 md:p-5 rounded-3xl bg-black/40 backdrop-blur-md border border-gold-primary/30 shadow-2xl">
+                        <img src="logo mpw.jpg" alt="Logo Madinah Pratama" class="h-28 md:h-44 object-contain">
+                    </div>
+                </div>
+                <h1 class="text-3xl md:text-6xl font-serif font-black gold-gradient tracking-tighter mb-2 uppercase">
+                    Madinah Pratama
+                </h1>
+                <p class="text-zinc-300 tracking-[0.25em] md:tracking-[0.5em] text-xs md:text-base uppercase font-bold">Wisata & Travel Bandung</p>
+            </div>
+        </div>
+
+        <!-- Highlight Bar -->
+        <div class="grid grid-cols-3 gap-1 bg-zinc-900/60 py-6 border-y border-gold-primary/30 text-center text-[10px] md:text-sm font-black uppercase tracking-widest text-gold-primary">
+            <div class="px-1"><i class="fa-solid fa-kaaba mb-2 block text-xl md:text-3xl"></i> Pasti Berangkat</div>
+            <div class="px-1 border-x border-gold-primary/20"><i class="fa-solid fa-hotel mb-2 block text-xl md:text-3xl"></i> Hotel Ring 1</div>
+            <div class="px-1"><i class="fa-solid fa-users-rays mb-2 block text-xl md:text-3xl"></i> Izin PPIU Resmi</div>
+        </div>
+
+        <!-- Gallery Dokumentasi -->
+        <div class="py-12 md:py-20 px-4 md:px-12">
+            <div class="text-center mb-10 md:mb-14">
+                <h2 class="text-3xl md:text-5xl font-serif gold-gradient font-black mb-3">Galeri Dokumentasi</h2>
+                <p class="text-zinc-400 text-sm md:text-lg font-semibold italic">Momen Kebahagiaan Jamaah Madinah Pratama</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="photo-frame luxury-card">
+                    <img src="umroh2.jpg" alt="Dokumentasi Jamaah 1">
+                    <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gold-primary">Tanah Suci</p>
+                    </div>
+                </div>
+                <div class="photo-frame luxury-card">
+                    <img src="umroh3.jpg" alt="Dokumentasi Jamaah 2">
+                    <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gold-primary">Ibadah Khusyu</p>
+                    </div>
+                </div>
+                <div class="photo-frame luxury-card">
+                    <img src="umroh4.jpg" alt="Dokumentasi Jamaah 3">
+                    <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-gold-primary">Kebersamaan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Testimoni -->
+        <div class="py-16 md:py-24 px-4 md:px-12 bg-zinc-950/30">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-serif gold-gradient font-black mb-3">Apa Kata Jamaah?</h2>
+                <p class="text-zinc-500 text-[10px] md:text-xs font-black uppercase tracking-[0.4em]">Cerita Nyata dari Komunitas Kami</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div class="luxury-card p-8 rounded-[2rem] relative">
+                    <i class="fa-solid fa-quote-left text-gold-primary/20 text-5xl absolute top-6 right-8"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-zinc-800 border border-gold-primary/30 flex items-center justify-center font-black text-gold-primary">H</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">H. Ahmad Fauzi</p>
+                            <div class="flex gap-1 text-[10px] text-yellow-500">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm leading-relaxed italic">"Pelayanan luar biasa sejak di Bekasi sampai Tanah Suci. Hotelnya bener-bener deket, ibadah jadi makin maksimal tanpa capek di jalan. Jazakallah MPW!"</p>
+                </div>
+
+                <div class="luxury-card p-8 rounded-[2rem] relative">
+                    <i class="fa-solid fa-quote-left text-gold-primary/20 text-5xl absolute top-6 right-8"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-zinc-800 border border-gold-primary/30 flex items-center justify-center font-black text-gold-primary">S</div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Siti Rohmah</p>
+                            <div class="flex gap-1 text-[10px] text-yellow-500">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm leading-relaxed italic">"Awalnya ragu karena mau nabung dulu, tapi dibimbing banget sama adminnya lewat kalkulator nabung. Alhamdulillah akhirnya bisa berangkat paket Silver kemarin."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paket Section -->
+        <div class="py-10 md:py-16 px-4 md:px-12 bg-zinc-900/20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Paket Silver -->
+                <div class="luxury-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-gold-primary/10 rounded-full blur-3xl"></div>
+                    <h3 class="text-2xl md:text-3xl font-serif font-black text-white mb-2">Paket Silver</h3>
+                    <p class="text-zinc-500 text-xs font-black uppercase tracking-widest mb-6">Bintang 4 • Terlaris</p>
+                    <div class="text-4xl md:text-5xl font-black text-gold-primary mb-8 italic">Rp 29,9 Jt</div>
+                    <ul class="space-y-4 mb-10 text-zinc-300 font-medium text-sm md:text-base">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-primary"></i> Hotel Anshor Al Madinah</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-primary"></i> Pesawat Saudia / Garuda</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-gold-primary"></i> Full Handling & Muthawif</li>
+                    </ul>
+                </div>
+
+                <!-- Paket Gold -->
+                <div class="luxury-card rounded-[2.5rem] p-8 md:p-12 border-gold-primary/50 relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-gold-primary/20 rounded-full blur-3xl"></div>
+                    <h3 class="text-2xl md:text-3xl font-serif font-black text-white mb-2">VIP Gold</h3>
+                    <p class="text-zinc-500 text-xs font-black uppercase tracking-widest mb-6">Bintang 5 • Eksklusif</p>
+                    <div class="text-4xl md:text-5xl font-black text-gold-primary mb-8 italic">Rp 38,5 Jt</div>
+                    <ul class="space-y-4 mb-10 text-zinc-300 font-medium text-sm md:text-base">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-crown text-gold-primary"></i> Hotel Pullmann Zamzam</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-crown text-gold-primary"></i> Kereta Cepat Haramain</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-crown text-gold-primary"></i> Executive Lounge Handling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulasi & Kalkulator -->
+        <div class="py-16 md:py-24 px-4 md:px-12 bg-black border-y border-zinc-800">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-serif gold-gradient font-black mb-3">Simulasi Keuangan</h2>
+                <p class="text-zinc-500 text-xs md:text-sm font-black uppercase tracking-[0.3em]">Wujudkan Niat Suci Sekarang</p>
+            </div>
+
+            <!-- Tab Cicilan -->
+            <div class="max-w-3xl mx-auto mb-16">
+                <div class="flex p-1 bg-zinc-950 border border-zinc-800 rounded-2xl mb-6">
+                    <button onclick="switchTab('silver')" id="tab-silver" class="simulasi-tab active flex-1 py-4 rounded-xl text-xs md:text-sm font-black uppercase transition-all">Paket Silver</button>
+                    <button onclick="switchTab('gold')" id="tab-gold" class="simulasi-tab flex-1 py-4 rounded-xl text-xs md:text-sm font-black uppercase transition-all text-zinc-500">Paket VIP Gold</button>
+                </div>
+
+                <div class="luxury-card rounded-2xl overflow-hidden shadow-2xl">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-zinc-900 border-b border-gold-primary/20 text-gold-primary font-black uppercase text-[10px] tracking-widest">
+                            <tr>
+                                <th class="px-6 py-5">Durasi</th>
+                                <th class="px-6 py-5">DP Awal</th>
+                                <th class="px-6 py-5 text-right">Per Bulan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="simulasi-body" class="text-zinc-300 font-bold">
+                            <!-- Data diisi via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Kalkulator Nabung -->
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-zinc-950 border border-gold-primary/30 p-8 rounded-[2.5rem] shadow-2xl">
+                    <h4 class="text-xl md:text-2xl font-black text-white mb-6 italic text-center">Kalkulator Nabung Semampunya</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black text-gold-primary uppercase tracking-widest ml-1">Pilih Target Paket</label>
+                                <select id="targetPaket" onchange="hitungLamaNabung()" class="form-input w-full px-5 py-4 rounded-2xl font-bold appearance-none cursor-pointer">
+                                    <option value="29900000">Paket Silver (Rp 29.9 Jt)</option>
+                                    <option value="38500000">Paket VIP Gold (Rp 38.5 Jt)</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black text-gold-primary uppercase tracking-widest ml-1">Rencana Nabung / Bulan</label>
+                                <div class="relative">
+                                    <span class="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500 font-black">Rp</span>
+                                    <input type="number" id="inputNabung" placeholder="Misal: 1000000" onkeyup="hitungLamaNabung()" 
+                                           class="form-input w-full pl-14 pr-5 py-5 rounded-2xl text-xl font-black">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-zinc-900 p-8 rounded-3xl border border-gold-primary/10 text-center flex flex-col justify-center min-h-[180px]">
+                            <p class="text-[10px] font-black text-zinc-500 uppercase mb-4 tracking-widest">Estimasi Keberangkatan:</p>
+                            <div id="displayHasil" class="text-3xl md:text-4xl font-black text-zinc-700 italic">
+                                ---
+                            </div>
+                            <div id="displayDetail" class="text-xs text-zinc-500 mt-3 font-bold">
+                                Masukkan nominal tabungan Anda
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Konsultasi & Alamat -->
+        <div id="form-daftar" class="py-20 px-4 md:px-16 bg-zinc-900/40">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-6xl font-serif font-black text-white mb-4">Konsultasi Gratis</h2>
+                    <p class="text-zinc-400 font-bold italic">Tanyakan ketersediaan seat melalui admin resmi kami</p>
+                </div>
+
+                <form id="bookingForm" class="space-y-4 mb-20">
+                    <input type="text" id="name" placeholder="Nama Lengkap" class="form-input w-full px-6 py-5 rounded-2xl text-base shadow-xl">
+                    <input type="tel" id="whatsapp" placeholder="Nomor WhatsApp" class="form-input w-full px-6 py-5 rounded-2xl text-base shadow-xl">
+                    <button type="button" onclick="sendToWhatsapp()" 
+                            class="w-full py-6 gold-bg text-black font-black rounded-2xl text-xl shadow-[0_10px_30px_rgba(191,149,63,0.3)] hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 uppercase tracking-widest">
+                        Hubungi Admin <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    </button>
+                </form>
+
+                <!-- Informasi Kantor -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
+                    <div class="luxury-card p-8 rounded-3xl border-l-4 border-l-gold-primary">
+                        <h5 class="text-gold-primary font-black uppercase text-xs tracking-widest mb-4">Kantor Pusat Bekasi</h5>
+                        <p class="text-white font-bold text-sm leading-relaxed mb-4">
+                            Grand Wisata, Cluster Garden Hous blok BG 1, No 96, Tambun Selatan, Bekasi
+                        </p>
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-center md:justify-start gap-2 text-zinc-500 text-xs font-bold">
+                                <i class="fa-solid fa-phone"></i> 021-82597300
+                            </div>
+                            <div class="flex items-center justify-center md:justify-start gap-2 text-zinc-500 text-xs font-bold">
+                                <i class="fa-brands fa-whatsapp text-gold-primary"></i> 0821-2446-3334
+                            </div>
+                        </div>
+                    </div>
+                    <div class="luxury-card p-8 rounded-3xl border-l-4 border-l-gold-primary">
+                        <h5 class="text-gold-primary font-black uppercase text-xs tracking-widest mb-4">Kantor Cabang Cimahi</h5>
+                        <p class="text-white font-bold text-sm leading-relaxed mb-4">
+                            Jl. Mahar Martanegara No. 223, Utama, Kec. Cimahi Sel., Kota Cimahi
+                        </p>
+                        <div class="flex items-center justify-center md:justify-start gap-2 text-zinc-500 text-xs font-bold">
+                            <i class="fa-solid fa-phone"></i> 0812-9876-543
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="p-16 text-center border-t border-zinc-900 bg-black">
+            <!-- Social Media Icons (Lebih Menonjol sebagai pengganti logo footer) -->
+            <div class="flex justify-center gap-8 mb-10">
+                <a href="https://www.madiahwisata.com" target="_blank" class="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-gold-primary hover:border-gold-primary transition-all">
+                    <i class="fa-solid fa-globe text-xl"></i>
+                </a>
+                <a href="https://www.instagram.com/madinahpratamawisata" target="_blank" class="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-gold-primary hover:border-gold-primary transition-all">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+                <a href="https://www.facebook.com/madinahpratamawisata" target="_blank" class="w-12 h-12 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-gold-primary hover:border-gold-primary transition-all">
+                    <i class="fa-brands fa-facebook text-xl"></i>
+                </a>
+            </div>
+
+            <!-- Website Link -->
+            <div class="mb-8">
+                <a href="https://www.madiahwisata.com" target="_blank" class="text-zinc-500 hover:text-gold-primary font-black uppercase tracking-[0.2em] text-xs transition-colors">
+                    www.madiahwisata.com
+                </a>
+            </div>
+
+            <div class="inline-block px-8 py-3 rounded-full border border-zinc-800 bg-zinc-900/30 mb-10 shadow-inner">
+                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">IZIN PPIU: <span class="text-gold-primary font-black">91202045626050002</span></p>
+            </div>
+            
+            <p class="text-[10px] text-zinc-700 uppercase font-black tracking-[0.3em]">&copy; 2026 Madinah Pratama Wisata • Bekasi</p>
+        </footer>
+    </div>
+
+    <script>
+        const dataSimulasi = {
+            silver: [
+                { durasi: "12 Bulan", dp: "5.000.000", cicilan: "2.075.000" },
+                { durasi: "24 Bulan", dp: "5.000.000", cicilan: "1.037.500" },
+                { durasi: "36 Bulan", dp: "5.000.000", cicilan: "691.667" }
+            ],
+            gold: [
+                { durasi: "12 Bulan", dp: "10.000.000", cicilan: "2.375.000" },
+                { durasi: "24 Bulan", dp: "10.000.000", cicilan: "1.187.500" },
+                { durasi: "36 Bulan", dp: "10.000.000", cicilan: "791.667" }
+            ]
+        };
+
+        function switchTab(pkg) {
+            const body = document.getElementById('simulasi-body');
+            const tabSilver = document.getElementById('tab-silver');
+            const tabGold = document.getElementById('tab-gold');
+            const activeData = dataSimulasi[pkg];
+
+            if (pkg === 'silver') {
+                tabSilver.classList.add('active', 'text-black');
+                tabGold.classList.remove('active', 'text-black');
+                tabGold.classList.add('text-zinc-500');
+            } else {
+                tabGold.classList.add('active', 'text-black');
+                tabSilver.classList.remove('active', 'text-black');
+                tabSilver.classList.add('text-zinc-500');
+            }
+
+            body.innerHTML = activeData.map((item, index) => `
+                <tr class="${index !== 2 ? 'border-b border-zinc-800/50' : ''}">
+                    <td class="px-6 py-5">${item.durasi}</td>
+                    <td class="px-6 py-5">Rp ${item.dp}</td>
+                    <td class="px-6 py-5 text-right ${index === 2 ? 'text-gold-primary text-lg' : 'text-white'}">Rp ${item.cicilan}</td>
+                </tr>
+            `).join('');
+        }
+
+        function hitungLamaNabung() {
+            const targetHarga = parseFloat(document.getElementById('targetPaket').value);
+            const nominalNabung = parseFloat(document.getElementById('inputNabung').value);
+            const displayHasil = document.getElementById('displayHasil');
+            const displayDetail = document.getElementById('displayDetail');
+
+            if (!nominalNabung || nominalNabung <= 0) {
+                displayHasil.innerText = "---";
+                displayHasil.className = "text-3xl md:text-4xl font-black italic text-zinc-700";
+                displayDetail.innerText = "Masukkan nominal tabungan Anda";
+                return;
+            }
+
+            const totalBulan = Math.ceil(targetHarga / nominalNabung);
+            const totalTahun = (totalBulan / 12).toFixed(1);
+
+            displayHasil.className = "text-3xl md:text-4xl font-black italic text-gold-primary";
+            displayHasil.innerHTML = `${totalBulan} <span class="text-sm uppercase tracking-widest text-white ml-2">Bulan</span>`;
+            
+            if (totalBulan >= 12) {
+                displayDetail.innerHTML = `<i class="fa-solid fa-calendar-days mr-2"></i> Estimasi berangkat dalam <span class="text-white">${totalTahun} Tahun</span>`;
+            } else {
+                displayDetail.innerHTML = `<i class="fa-solid fa-bolt mr-2 text-yellow-400"></i> MasyaAllah, berangkat dalam tahun ini!`;
+            }
+        }
+
+        window.onload = function() {
+            switchTab('silver');
+        }
+
+        function sendToWhatsapp() {
+            const name = document.getElementById('name').value;
+            const wa = document.getElementById('whatsapp').value;
+            if(!name || !wa) { 
+                alert('Isi Nama dan No. WhatsApp dulu ya bro!'); 
+                return; 
+            }
+            const message = `Bismillah, Assalamu'alaikum Admin Madinah Pratama.%0A%0ASaya *${name}* (${wa}) ingin berkonsultasi mengenai paket Umroh. Mohon info detail keberangkatan terdekat ya. Jazakallah khair.`;
+            window.open(`https://wa.me/6282124463334?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
