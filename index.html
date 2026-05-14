@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Brosur Madinah Pratama Wisata Bandung - Syawal Special</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --gold-primary: #bf953f;
+            --gold-light: #fcf6ba;
+            --gold-dark: #aa771c;
+        }
+
+        body {
+            background-color: #050505;
+            font-family: 'Inter', sans-serif;
+            color: #f4f4f5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-light), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gold-glass {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(191, 149, 63, 0.3);
+        }
+
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(191, 149, 63, 0.2);
+            cursor: zoom-in;
+        }
+
+        .img-container img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #222;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(191, 149, 63, 0.5);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .lightbox-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            gap: 15px;
+        }
+
+        .control-btn {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--gold-primary);
+            border-color: var(--gold-light);
+            transform: scale(1.1);
+        }
+
+        #lightbox-img {
+            max-width: 95%;
+            max-height: 95%;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-drag: none;
+            transition: transform 0.1s ease-out;
+        }
+
+        #lightbox-img:active { cursor: grabbing; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+
+        .payment-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(191, 149, 63, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .payment-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(191, 149, 63, 0.1);
+        }
+    </style>
+</head>
+<body class="pb-24">
+
+    <!-- Header & Logo -->
+    <header class="relative pt-16 pb-10 px-6 text-center">
+        <div class="flex justify-center mb-6">
+            <div class="relative w-32 h-32 flex items-center justify-center p-2 bg-white/5 rounded-full border border-gold-primary/30 shadow-2xl">
+                <!-- Placeholder Logo - Gantilah dengan file logo asli -->
+                <img src="logo mpw.jpg" alt="Logo Madinah Pratama Wisata" class="w-full h-full object-contain rounded-full" onerror="this.src='https://via.placeholder.com/150?text=MPW+LOGO'">
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <span class="text-[10px] uppercase tracking-[0.5em] text-gray-500 mb-2 block font-bold text-center">Ibadah Nyaman, Hati Tenang</span>
+            <h1 class="text-3xl md:text-5xl font-black font-serif italic mb-3 text-center">
+                <span class="gold-gradient uppercase">Madinah Pratama Wisata Bandung</span>
+            </h1>
+            <div class="h-1 w-20 bg-gradient-to-r from-transparent via-gold-primary to-transparent mx-auto mb-4"></div>
+            <p class="text-gray-400 text-sm max-w-sm mx-auto leading-relaxed text-center">
+                Tingkatkan iman di bulan penuh kemenangan. Nikmati paket Umroh Syawal eksklusif dari Madinah Pratama Wisata Bandung.
+            </p>
+        </div>
+    </header>
+
+    <!-- Brosur Section (Dua Brosur) -->
+    <section class="px-6 mb-16 max-w-6xl mx-auto">
+        <div class="text-center mb-8">
+            <div class="inline-block px-6 py-2 rounded-full border border-gold-primary/30 bg-gold-primary/10 mb-4">
+                <span class="text-[11px] font-bold gold-gradient uppercase tracking-[0.3em]">Jadwal Keberangkatan Terdekat</span>
+            </div>
+            <h2 class="text-2xl font-serif italic font-bold text-white mb-2">Pilih Paket Keberangkatan Anda</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
+            <!-- Brosur 1 (Agustus) -->
+            <div class="flex flex-col">
+                <div class="img-container" onclick="openLightbox('agustus.jpeg')">
+                    <img src="agustus.jpeg" alt="Brosur Agustus" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/800x1200?text=Brosur+Agustus'">
+                    <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-4 py-1 rounded-full border border-gold-primary/40">
+                        <span class="text-[10px] gold-gradient font-bold uppercase tracking-widest">Keberangkatan Agustus</span>
+                    </div>
+                </div>
+                <p class="text-[10px] text-gray-500 text-center mt-3 uppercase tracking-widest italic">Klik untuk zoom detail Agustus</p>
+            </div>
+
+            <!-- Brosur 2 (September) -->
+            <div class="flex flex-col">
+                <div class="img-container" onclick="openLightbox('september.jpeg')">
+                    <img src="september.jpeg" alt="Brosur September" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/800x1200?text=Brosur+September'">
+                    <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-4 py-1 rounded-full border border-gold-primary/40">
+                        <span class="text-[10px] gold-gradient font-bold uppercase tracking-widest">Keberangkatan September</span>
+                    </div>
+                </div>
+                <p class="text-[10px] text-gray-500 text-center mt-3 uppercase tracking-widest italic">Klik untuk zoom detail September</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="px-6 mb-20 max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl font-serif italic font-bold gold-gradient mb-2 uppercase tracking-widest">Metode Pembayaran</h2>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest italic">Pilihan Cara Bayar Yang Memudahkan Anda</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="payment-card p-8 rounded-[2rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-gold-primary/10 rounded-full flex items-center justify-center mb-6 border border-gold-primary/20">
+                    <i class="fa-solid fa-money-bill-1-wave text-gold-primary text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-3 font-serif italic">Tunai / Cash</h3>
+                <p class="text-xs text-gray-400 leading-relaxed text-center">Pembayaran langsung melalui kantor perwakilan atau transfer bank resmi perusahaan.</p>
+            </div>
+
+            <div class="payment-card p-8 rounded-[2rem] flex flex-col items-center text-center relative overflow-hidden">
+                <div class="absolute top-4 right-4 bg-gold-primary/20 text-gold-light text-[8px] px-2 py-1 rounded font-bold uppercase">Syariah</div>
+                <div class="w-16 h-16 bg-gold-primary/10 rounded-full flex items-center justify-center mb-6 border border-gold-primary/20">
+                    <i class="fa-solid fa-handshake text-gold-primary text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-3 font-serif italic">Menabung di Bank BSI</h3>
+                <p class="text-xs text-gray-400 leading-relaxed text-center">Program pembiayaan syariah yang bekerjasama resmi dengan Bank Syariah Indonesia.</p>
+            </div>
+
+            <div class="payment-card p-8 rounded-[2rem] flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-gold-primary/10 rounded-full flex items-center justify-center mb-6 border border-gold-primary/20">
+                    <i class="fa-solid fa-lightbulb text-gold-primary text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-3 font-serif italic">Program Solusi</h3>
+                <p class="text-xs text-gray-400 leading-relaxed text-center">Solusi cerdas menabung untuk keberangkatan terencana tanpa memberatkan beban bulanan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="px-6 mb-20 max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl font-serif italic font-bold gold-gradient mb-2 uppercase tracking-widest">Galeri Dokumentasi</h2>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest italic text-center">Kebahagiaan Jamaah Madinah Pratama Wisata Bandung</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Galeri items with placeholders if images are missing -->
+            <div class="img-container aspect-square group" onclick="openLightbox('umroh1.jpeg')">
+                <img src="umroh1.jpeg" alt="Dokumentasi 1" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Dokumentasi+1'">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-gold-light text-2xl"></i>
+                </div>
+            </div>
+            <div class="img-container aspect-square group" onclick="openLightbox('umroh2.jpeg')">
+                <img src="umroh2.jpeg" alt="Dokumentasi 2" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Dokumentasi+2'">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-gold-light text-2xl"></i>
+                </div>
+            </div>
+            <div class="img-container aspect-square group" onclick="openLightbox('umroh3.jpeg')">
+                <img src="umroh3.jpeg" alt="Dokumentasi 3" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Dokumentasi+3'">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-gold-light text-2xl"></i>
+                </div>
+            </div>
+            <div class="img-container aspect-square group" onclick="openLightbox('umroh4.jpeg')">
+                <img src="umroh4.jpeg" alt="Dokumentasi 3" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Dokumentasi+3'">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-gold-light text-2xl"></i>
+                </div>
+            </div>
+            <div class="img-container aspect-square group" onclick="openLightbox('umroh5.jpeg')">
+                <img src="umroh5.jpeg" alt="Dokumentasi 3" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Dokumentasi+3'">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-gold-light text-2xl"></i>
+                </div>
+            </div>
+            <div class="img-container aspect-square group" onclick="openLightbox('umroh6.jpeg')">
+                <img src="umroh6.jpeg" alt="Dokumentasi 3" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Dokumentasi+3'">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-gold-light text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kalkulator Simulasi -->
+    <section class="px-6 mb-20 max-w-2xl mx-auto">
+        <div class="bg-gold-glass p-8 md:p-10 rounded-[2.5rem] border border-gold-primary/30 relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-gold-primary/10 rounded-full blur-3xl"></div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-gold-primary/20 rounded-full flex items-center justify-center mr-4">
+                        <i class="fa-solid fa-piggy-bank text-gold-primary text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold font-serif italic text-white leading-tight">Simulasi Nabung Umroh</h2>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest">Wujudkan Program Solusi Baitullah Anda</p>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-semibold text-gray-300">Harga Paket (IDR)</span>
+                            <span class="text-lg font-black text-gold-primary font-mono" id="valHarga">30 Jt</span>
+                        </div>
+                        <input type="range" id="inputHarga" min="25" max="60" value="30" step="1" oninput="hitungNabung()">
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-semibold text-gray-300">Nabung / Bulan (IDR)</span>
+                            <span class="text-lg font-black text-gold-primary font-mono" id="valNabung">1 Jt</span>
+                        </div>
+                        <input type="range" id="inputNabung" min="0.5" max="10" value="1" step="0.5" oninput="hitungNabung()">
+                    </div>
+                    <div class="bg-black/40 rounded-2xl p-6 border border-white/5 text-center">
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-2">Estimasi Berangkat Dalam</p>
+                        <div class="flex justify-center items-end">
+                            <span class="text-5xl font-black italic gold-gradient leading-none" id="hasilBulan">30</span>
+                            <span class="text-xs text-white uppercase font-bold ml-2 pb-1">Bulan</span>
+                        </div>
+                        <p id="hasilDetail" class="mt-4 text-xs text-gray-400 italic">Niatkan, usaha, dan tawakal kepada Allah.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Form -->
+    <section class="px-6 max-w-xl mx-auto">
+        <div class="text-center mb-6">
+            <h3 class="text-xl font-serif italic font-bold gold-gradient mb-2 uppercase">Konsultasi Gratis</h3>
+        </div>
+        <div class="space-y-4 bg-white/5 p-8 rounded-3xl border border-white/10">
+            <input type="text" id="userName" placeholder="Nama Lengkap" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-gold-primary transition-all">
+            <input type="tel" id="userWA" placeholder="WhatsApp (Contoh: 0812...)" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-gold-primary transition-all">
+            <div class="grid grid-cols-2 gap-3 mt-4">
+                <button onclick="sendWhatsApp('6287822267777')" class="group py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest bg-white/5 border border-white/10 text-white hover:bg-gold-primary transition-all flex flex-col items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl text-green-500 group-hover:text-white"></i>
+                    Admin 1
+                </button>
+                <button onclick="sendWhatsApp('6287847970426')" class="group py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest bg-white/5 border border-white/10 text-white hover:bg-gold-primary transition-all flex flex-col items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl text-green-500 group-hover:text-white"></i>
+                    Admin 2
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onmousedown="startDrag(event)" onmousemove="doDrag(event)" onmouseup="endDrag()" onmouseleave="endDrag()" ontouchstart="startDrag(event)" ontouchmove="doDrag(event)" ontouchend="endDrag()">
+        <div class="lightbox-controls">
+            <button onclick="zoomImg(1.2); event.stopPropagation();" class="control-btn" title="Zoom In"><i class="fa-solid fa-plus"></i></button>
+            <button onclick="zoomImg(0.8); event.stopPropagation();" class="control-btn" title="Zoom Out"><i class="fa-solid fa-minus"></i></button>
+            <button onclick="resetZoom(); event.stopPropagation();" class="control-btn" title="Reset"><i class="fa-solid fa-arrows-rotate"></i></button>
+            <button onclick="closeLightbox()" class="control-btn bg-red-500/20 hover:bg-red-500 border-red-500/50" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <img id="lightbox-img" src="" alt="Brosur Zoom" draggable="false">
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 text-center px-6 border-t border-white/5 pt-12 pb-16 bg-white/[0.02]">
+        <div class="flex justify-center space-x-6 mb-10">
+            <a href="https://www.instagram.com/mpwtourandtravel/" target="_blank" class="text-center group">
+                <div class="w-12 h-12 border border-white/10 rounded-full flex items-center justify-center mb-2 group-hover:border-gold-primary group-hover:bg-gold-primary/10 transition-all">
+                    <i class="fa-brands fa-instagram text-xl text-gray-500 group-hover:text-gold-primary"></i>
+                </div>
+                <span class="text-[8px] uppercase text-gray-600 tracking-tighter">Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/MPW-Tour-and-Travel" target="_blank" class="text-center group">
+                <div class="w-12 h-12 border border-white/10 rounded-full flex items-center justify-center mb-2 group-hover:border-gold-primary group-hover:bg-gold-primary/10 transition-all">
+                    <i class="fa-brands fa-facebook-f text-xl text-gray-500 group-hover:text-gold-primary"></i>
+                </div>
+                <span class="text-[8px] uppercase text-gray-600 tracking-tighter">Facebook</span>
+            </a>
+        </div>
+
+        <div class="max-w-md mx-auto mb-8 space-y-4 text-center">
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
+                <span class="text-[9px] uppercase tracking-widest text-gold-primary font-bold block mb-2">Kantor Perwakilan</span>
+                <p class="text-[12px] text-gray-300 leading-relaxed font-medium">Jl. Mahar Martanegara No. 223 Kota Cimahi<br>Kota Bandung - Jawa Barat</p>
+            </div>
+            
+            <div class="bg-gold-primary/10 px-6 py-3 rounded-full border border-gold-primary/20 inline-block">
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gold-light">No. Izin Umroh: <span class="font-mono font-bold">91202045626050002</span></p>
+            </div>
+        </div>
+
+        <p class="text-[10px] text-gray-700 tracking-[0.3em] uppercase">&copy; 2024 Madinah Pratama Wisata Bandung</p>
+    </footer>
+
+    <script>
+        let currentScale = 1;
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+        const img = document.getElementById('lightbox-img');
+
+        function hitungNabung() {
+            const harga = parseFloat(document.getElementById('inputHarga').value);
+            const nabung = parseFloat(document.getElementById('inputNabung').value);
+            document.getElementById('valHarga').innerText = harga + " Jt";
+            document.getElementById('valNabung').innerText = nabung + " Jt";
+            const totalBulan = Math.ceil(harga / nabung);
+            document.getElementById('hasilBulan').innerText = totalBulan;
+            document.getElementById('hasilDetail').innerText = totalBulan >= 12 
+                ? `Sekitar ${(totalBulan/12).toFixed(1)} Tahun lagi. Semangat!` 
+                : "InsyaAllah berangkat tahun ini juga!";
+        }
+
+        function sendWhatsApp(adminWA) {
+            const name = document.getElementById('userName').value;
+            const wa = document.getElementById('userWA').value;
+            if(!name || !wa) { alert('Isi Nama & WA dulu ya!'); return; }
+            const message = `Assalamu'alaikum Admin MPW Bandung.%0A%0ASaya *${name}* (${wa}) ingin tanya seputar Paket Keberangkatan & Program Pembayaran. Jazakallah khair.`;
+            window.open(`https://wa.me/${adminWA}?text=${message}`, '_blank');
+        }
+
+        function openLightbox(src) {
+            img.src = src;
+            resetZoom();
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function zoomImg(factor) {
+            currentScale *= factor;
+            currentScale = Math.min(Math.max(0.5, currentScale), 5);
+            updateTransform();
+        }
+
+        function resetZoom() {
+            currentScale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform();
+        }
+
+        function updateTransform() {
+            img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+        }
+
+        function startDrag(e) {
+            isDragging = true;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            startX = clientX - translateX;
+            startY = clientY - translateY;
+        }
+
+        function doDrag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            translateX = clientX - startX;
+            translateY = clientY - startY;
+            updateTransform();
+        }
+
+        function endDrag() { isDragging = false; }
+
+        window.onload = hitungNabung;
+    </script>
+</body>
+</html>
